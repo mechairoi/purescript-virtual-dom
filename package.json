@@ -4,7 +4,7 @@
   "private": true,
   "license": "MIT",
   "dependencies": {
-    "virtual-dom": "1.0.0"
+    "virtual-dom": "^2.1.1"
   },
   "devDependencies": {
     "pulp": "^8.0.0"
