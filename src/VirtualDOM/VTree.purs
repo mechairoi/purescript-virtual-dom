@@ -31,13 +31,13 @@ foreign import vtext :: String -> VTree
 
 foreign import widget :: forall props. { | props} -> VTree
 
-foreign import thunk_ :: Fn3  (Maybe VTree -> VTree) 
-                              (Maybe VTree) 
-                              (VTree -> Maybe VTree) 
+foreign import thunk_ :: Fn3  (Maybe VTree -> VTree)
+                              (Maybe VTree)
+                              (VTree -> Maybe VTree)
                               VTree
 
--- Render a VTree using custom logic function.  The logic can examine the 
--- previous VTree before returning the new (or same) one.  The result of the 
+-- Render a VTree using custom logic function.  The logic can examine the
+-- previous VTree before returning the new (or same) one.  The result of the
 -- render function must be a vnode, vtext, or widget.  This constraint is not
 -- enforced by the types.
 thunk :: (Maybe VTree -> VTree) -> VTree
@@ -51,5 +51,3 @@ foreign import showVHookImpl :: VHook -> String
 
 instance showVHook :: Show VHook where
   show = showVHookImpl
-
-

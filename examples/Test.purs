@@ -17,7 +17,7 @@ doc3 :: VTree
 doc3 = vtext "hello world"
 
 doc4 :: VTree
-doc4 = vnode "div" 
+doc4 = vnode "div"
     { "namespace": "http://www.w3.org/2000/svg"
     , "key": "my key"
     } [vtext "Am I SVG?"]
@@ -36,41 +36,41 @@ doc6 :: VTree
 doc6 = vnode "div" {} [vtext "with invalid widget", widget {}]
 
 doc7 :: VTree
-doc7 = 
+doc7 =
   let d = void
   in vnode "div" {} [ vtext "with valid widget and thunk"
                     , widget {init:d, update:d, destroy:d}
-                    , thunk $ maybe 
+                    , thunk $ maybe
                         (vnode "div" {} [vtext "inside thunk, doc 7 tree 1"])
                         (\_ -> vnode "div" {} [vtext "inside thunk, doc 7 tree 2"])
                     ]
 
--- Make an equivalent (to thunk) but not *identical* tree to force thunk 
+-- Make an equivalent (to thunk) but not *identical* tree to force thunk
 -- evaluation when doing diff.
 doc7B :: VTree
-doc7B = 
+doc7B =
   let d = void
   in vnode "div" {} [ vtext "with valid widget and thunk"
                     , widget {init:d, update:d, destroy:d}
-                    , thunk $ maybe 
+                    , thunk $ maybe
                         (vnode "div" {} [vtext "inside thunk, doc 7B tree 1"])
                         (\_ -> vnode "div" {} [vtext "inside thunk, doc 7B tree 2"])
                     ]
 
 
 doc8 :: VTree
-doc8 = 
+doc8 =
   let d = void
   in vnode "div" {} [
-      vnode "div" { hookProp: vhook { hook:d, unhook:d} 
-                  , customProp: "my key" 
-                  } 
+      vnode "div" { hookProp: vhook { hook:d, unhook:d}
+                  , customProp: "my key"
+                  }
                   [vtext "with hooks"]
       ]
 
 printH :: forall eff a. (Show a) => String -> a -> Eff (trace :: Trace | eff) Unit
-printH hdr o = do 
-  print $ "=== " ++ hdr ++ " ===" 
+printH hdr o = do
+  print $ "=== " ++ hdr ++ " ==="
   print o
 
 main = do
@@ -83,7 +83,7 @@ main = do
   printH "doc6" doc6
   printH "doc7" doc7
   printH "doc8" doc8
-  
+
   printH "diff doc1 doc2" $ diff doc1 doc2
   printH "diff doc1 doc3" $ diff doc1 doc3
 
