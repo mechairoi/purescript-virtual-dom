@@ -5,12 +5,12 @@ module VirtualDOM
   , patch
   ) where
 
-import Prelude
-import Control.Monad.Eff
-import Data.Function
-import DOM
+import Prelude (class Show)
+import Control.Monad.Eff (Eff)
+import Data.Function (Fn2, runFn2)
+import DOM (DOM)
 import DOM.Node.Types (Node)
-import VirtualDOM.VTree
+import VirtualDOM.VTree (VTree)
 
 -- PatchObject represents an Array<VPatch>, where each VPatch is a patch
 -- operation.  See virtual-dom/docs.jsig for details.

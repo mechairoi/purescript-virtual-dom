@@ -9,9 +9,9 @@ module VirtualDOM.VTree
   , vhook
   ) where
 
-import Prelude
-import Data.Function
-import Data.Maybe
+import Prelude (class Show)
+import Data.Function (Fn3, runFn3)
+import Data.Maybe (Maybe(Just, Nothing))
 
 foreign import data VTree :: *
 
