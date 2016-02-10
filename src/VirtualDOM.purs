@@ -9,6 +9,7 @@ import Prelude
 import Control.Monad.Eff
 import Data.Function
 import DOM
+import DOM.Node.Types (Node)
 import VirtualDOM.VTree
 
 -- PatchObject represents an Array<VPatch>, where each VPatch is a patch
