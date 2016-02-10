@@ -25,5 +25,8 @@
     "purescript-eff": "^0.1.2",
     "purescript-dom": "^0.2.16",
     "purescript-maybe": "^0.3.5"
+  },
+  "devDependencies": {
+    "purescript-debug": "^0.1.3"
   }
 }

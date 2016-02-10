@@ -1,10 +1,11 @@
-module Test where
+module Test.Main where
 
-import VirtualDOM
-import VirtualDOM.VTree
-import Debug.Trace
-import Control.Monad.Eff
-import Data.Maybe
+import Prelude (class Show, Unit, ($), bind, unit, show, pure, (++), void)
+import VirtualDOM (diff)
+import VirtualDOM.VTree (VTree, vtext, vhook, vnode, thunk, widget)
+import Debug.Trace (trace)
+import Control.Monad.Eff (Eff)
+import Data.Maybe (maybe)
 
 
 doc1 :: VTree
@@ -68,11 +69,15 @@ doc8 =
                   [vtext "with hooks"]
       ]
 
-printH :: forall eff a. (Show a) => String -> a -> Eff (trace :: Trace | eff) Unit
+printH :: forall eff a. (Show a) => String -> a -> Eff eff Unit
 printH hdr o = do
   print $ "=== " ++ hdr ++ " ==="
   print o
 
+print :: forall a eff. (Show a) => a -> Eff eff Unit
+print o = pure $ trace (show o) (\_ -> unit)
+
+main :: forall a. Eff a Unit
 main = do
 
   printH "doc1" doc1
