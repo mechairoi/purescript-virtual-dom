@@ -1,3 +1,4 @@
+/* global exports, require */
 "use strict";
 
 // module VirtualDOM

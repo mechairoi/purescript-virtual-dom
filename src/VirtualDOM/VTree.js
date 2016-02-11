@@ -1,3 +1,4 @@
+/* global exports, require */
 "use strict";
 
 // module VirtualDOM.VTree
@@ -8,8 +9,7 @@ exports.vnode_ = function() {
     var VNode = require('virtual-dom/vnode/vnode');
 
     return function (name, props, children) {
-      var key = undefined;
-      var ns = undefined;
+      var key, ns;
 
       if(props.namespace) {
         ns = props.namespace;
@@ -36,9 +36,9 @@ exports.widget = function() {
     return function (props) {
       var rWidget = { type: 'Widget'};
 
-      if(props.init)    { rWidget.init    = props.init };
-      if(props.update)  { rWidget.update  = props.update };
-      if(props.destroy) { rWidget.destroy = props.destroy };
+      if (props.init)    { rWidget.init    = props.init; }
+      if (props.update)  { rWidget.update  = props.update; }
+      if (props.destroy) { rWidget.destroy = props.destroy; }
 
       return rWidget;
     };
@@ -46,14 +46,15 @@ exports.widget = function() {
 
 exports.thunk_ = function() {
     return function (renderFn, nothing, just) {
-      var rThunk  = { type: 'Thunk'
-                    , render: function(prevNode) {
-                                if (prevNode === null)
-                                  return renderFn(nothing);
-                                else
-                                  return renderFn(just(prevNode));
-                              }
-                    };
+      var rThunk = {
+        type: 'Thunk',
+        render: function(prevNode) {
+          if (prevNode === null)
+            return renderFn(nothing);
+          else
+            return renderFn(just(prevNode));
+        }
+      };
       // No need for vnode here.  It is used internally by virtual-dom to cache
       // the result of render.
       return rThunk;
@@ -63,9 +64,9 @@ exports.thunk_ = function() {
 exports.vhook = function() {
     return function (props) {
       var rVHook  = function () { };
-      if(props.hook)   { rVHook.prototype.hook    = props.hook };
-      if(props.unhook) { rVHook.prototype.unhook  = props.unhook };
-      return new rVHook;
+      if (props.hook)   { rVHook.prototype.hook    = props.hook; }
+      if (props.unhook) { rVHook.prototype.unhook  = props.unhook; }
+      return new rVHook();
     };
 }();
 
