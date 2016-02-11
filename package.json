@@ -7,11 +7,12 @@
     "virtual-dom": "^2.1.1"
   },
   "devDependencies": {
+    "jscs": "^2.9.0",
     "jshint": "^2.9.1",
     "pulp": "^8.0.0"
   },
   "scripts": {
-    "build": "jshint src && pulp build",
+    "build": "jshint src && jscs src && pulp build",
     "docs": "pulp docs",
     "test": "pulp test"
   }
