@@ -10,7 +10,6 @@ module VirtualDOM.VTree
   ) where
 
 import Prelude (class Show)
-import Data.Function (Fn3, runFn3)
 import Data.Maybe (Maybe(Just, Nothing))
 
 foreign import data VTree :: *
@@ -22,26 +21,23 @@ instance showVTree :: Show VTree where
 
 type TagName = String
 
-foreign import vnode_ :: forall props. Fn3 TagName { | props} (Array VTree) VTree
-
-vnode :: forall props. TagName -> { | props} -> Array VTree -> VTree
-vnode name props children = runFn3 vnode_ name props children
+foreign import vnode :: forall props. TagName -> { | props} -> Array VTree -> VTree
 
 foreign import vtext :: String -> VTree
 
 foreign import widget :: forall props. { | props} -> VTree
 
-foreign import thunk_ :: Fn3  (Maybe VTree -> VTree)
-                              (Maybe VTree)
-                              (VTree -> Maybe VTree)
-                              VTree
+foreign import thunk_ :: (Maybe VTree -> VTree)
+                      -> Maybe VTree
+                      -> (VTree -> Maybe VTree)
+                      -> VTree
 
 -- Render a VTree using custom logic function.  The logic can examine the
 -- previous VTree before returning the new (or same) one.  The result of the
 -- render function must be a vnode, vtext, or widget.  This constraint is not
 -- enforced by the types.
 thunk :: (Maybe VTree -> VTree) -> VTree
-thunk render = runFn3 thunk_ render Nothing Just
+thunk render = thunk_ render Nothing Just
 
 foreign import data VHook :: *
 

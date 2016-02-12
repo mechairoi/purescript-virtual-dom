@@ -5,23 +5,27 @@
 
 exports.showVTreeImpl = JSON.stringify;
 
-exports.vnode_ = function () {
+exports.vnode = function () {
   var VNode = require("virtual-dom/vnode/vnode");
 
-  return function (name, props, children) {
-    var key, ns;
+  return function (name) {
+    return function (props) {
+      return function (children) {
+        var key, ns;
 
-    if (props.namespace) {
-      ns = props.namespace;
-      props.namespace = undefined;
-    }
+        if (props.namespace) {
+          ns = props.namespace;
+          props.namespace = undefined;
+        }
 
-    if (props.key) {
-      key = props.key;
-      props.key = undefined;
-    }
+        if (props.key) {
+          key = props.key;
+          props.key = undefined;
+        }
 
-    return new VNode(name, props, children, key, ns);
+        return new VNode(name, props, children, key, ns);
+      };
+    };
   };
 }();
 
@@ -45,19 +49,23 @@ exports.widget = function () {
 }();
 
 exports.thunk_ = function () {
-  return function (renderFn, nothing, just) {
-    var rThunk = {
-      type: "Thunk",
-      render: function (prevNode) {
-        if (prevNode === null)
-          return renderFn(nothing);
-        else
-          return renderFn(just(prevNode));
-      }
+  return function (renderFn) {
+    return function (nothing) {
+      return function (just) {
+        var rThunk = {
+          type: "Thunk",
+          render: function (prevNode) {
+            if (prevNode === null)
+              return renderFn(nothing);
+            else
+              return renderFn(just(prevNode));
+          }
+        };
+        // No need for vnode here.  It is used internally by virtual-dom to cache
+        // the result of render.
+        return rThunk;
+      };
     };
-    // No need for vnode here.  It is used internally by virtual-dom to cache
-    // the result of render.
-    return rThunk;
   };
 }();
 
