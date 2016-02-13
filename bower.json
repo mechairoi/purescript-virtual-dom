@@ -9,13 +9,16 @@
     "Gary Burgess <gary.burgess@gmail.com>",
     "Daniel Austin <dan@fluffynukeit.com>"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mechairoi/purescript-virtual-dom.git"
+  },
   "ignore": [
     "**/.*",
     "bower_components",
     "node_modules",
     "output",
-    "tests",
-    "tmp",
+    "test",
     "bower.json",
     "package.json"
   ],
