@@ -1,6 +1,6 @@
 module Test.Main where
 
-import Prelude (class Show, Unit, ($), bind, unit, show, pure, (++), void)
+import Prelude (class Show, Unit, ($), bind, unit, show, pure, (<>), void)
 import VirtualDOM (diff)
 import VirtualDOM.VTree (VTree, vtext, vhook, vnode, thunk, widget)
 import Debug.Trace (trace)
@@ -71,7 +71,7 @@ doc8 =
 
 printH :: forall eff a. (Show a) => String -> a -> Eff eff Unit
 printH hdr o = do
-  print $ "=== " ++ hdr ++ " ==="
+  print $ "=== " <> hdr <> " ==="
   print o
 
 print :: forall a eff. (Show a) => a -> Eff eff Unit
