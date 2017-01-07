@@ -3,7 +3,7 @@
 #### `PatchObject`
 
 ``` purescript
-data PatchObject :: *
+data PatchObject :: Prim.Type
 ```
 
 ##### Instances

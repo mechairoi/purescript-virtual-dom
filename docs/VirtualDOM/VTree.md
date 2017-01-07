@@ -3,7 +3,7 @@
 #### `VTree`
 
 ``` purescript
-data VTree :: *
+data VTree :: Prim.Type
 ```
 
 ##### Instances
@@ -44,7 +44,7 @@ thunk :: (Maybe VTree -> VTree) -> VTree
 #### `VHook`
 
 ``` purescript
-data VHook :: *
+data VHook :: Prim.Type
 ```
 
 ##### Instances
