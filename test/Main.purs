@@ -1,6 +1,6 @@
 module Test.Main where
 
-import Prelude (class Show, Unit, ($), bind, unit, show, pure, (<>), void)
+import Prelude (class Show, Unit, discard, pure, show, unit, void, ($), (<>))
 import VirtualDOM (diff)
 import VirtualDOM.VTree (VTree, vtext, vhook, vnode, thunk, widget)
 import Debug.Trace (trace)

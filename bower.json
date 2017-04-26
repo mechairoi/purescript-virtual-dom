@@ -1,10 +1,6 @@
 {
   "name": "purescript-virtual-dom",
   "description": "virtual-dom bindings for PureScript",
-  "keywords": [
-    "purescript",
-    "virtual-dom"
-  ],
   "authors": [
     "Gary Burgess <gary.burgess@gmail.com>",
     "Daniel Austin <dan@fluffynukeit.com>"
@@ -23,12 +19,12 @@
     "package.json"
   ],
   "dependencies": {
-    "purescript-prelude": "^2.1.0",
-    "purescript-eff": "^2.0.0",
-    "purescript-dom": "^3.3.1",
-    "purescript-maybe": "^2.0.1"
+    "purescript-prelude": "^3.0.0",
+    "purescript-eff": "^3.1.0",
+    "purescript-dom": "^4.3.1",
+    "purescript-maybe": "^3.0.0"
   },
   "devDependencies": {
-    "purescript-debug": "^2.0.0"
+    "purescript-debug": "^3.0.0"
   }
 }

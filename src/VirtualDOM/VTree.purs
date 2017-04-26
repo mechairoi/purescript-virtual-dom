@@ -12,7 +12,7 @@ module VirtualDOM.VTree
 import Prelude (class Show)
 import Data.Maybe (Maybe(Just, Nothing))
 
-foreign import data VTree :: *
+foreign import data VTree :: Type
 
 foreign import showVTreeImpl :: VTree -> String
 
@@ -39,7 +39,7 @@ foreign import thunk_ :: (Maybe VTree -> VTree)
 thunk :: (Maybe VTree -> VTree) -> VTree
 thunk render = thunk_ render Nothing Just
 
-foreign import data VHook :: *
+foreign import data VHook :: Type
 
 foreign import vhook  :: forall props. { | props } -> VHook
 

@@ -13,7 +13,7 @@ import VirtualDOM.VTree (VTree)
 
 -- PatchObject represents an Array<VPatch>, where each VPatch is a patch
 -- operation.  See virtual-dom/docs.jsig for details.
-foreign import data PatchObject :: *
+foreign import data PatchObject :: Type
 
 foreign import showPatchObjectImpl :: PatchObject -> String
 
